@@ -10,6 +10,7 @@ export class ServersComponent implements OnInit {
    * PROPERTIES OF THE COMPONENT
    */
   allowNewServer:boolean = false;
+  serverCreationStatus:string = "No server was created!"
 
   constructor() {
     setTimeout(() => {
@@ -18,6 +19,13 @@ export class ServersComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  /**
+   * MAIN METHODS
+   */
+  onCreateServer() {
+    this.serverCreationStatus = "Server was created!";
   }
 
 }
