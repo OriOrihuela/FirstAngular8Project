@@ -1,20 +1,36 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: "app-server",
-    templateUrl: "./server.component.html"
+  selector: "app-server",
+  templateUrl: "./server.component.html",
+  styles: [`
+    .online {
+        color: white;
+    }  
+  `]
 })
 export class ServerComponent {
-    /**
-     * PROPERTIES OF THE COMPONENT
-     */
-    serverId:number = 10;
-    serverStatus:string = "offline";
+  /**
+   * PROPERTIES OF THE COMPONENT
+   */
+  serverId: number = 10;
+  serverStatus: string = "offline";
 
-    /**
-     * MAIN METHODS
-     */
-     getServerStatus() {
-        return this.serverStatus;
-     }
+  /**
+   * CONSTRUCTOR
+   */
+  constructor() {
+    this.serverStatus = Math.random() > 0.5 ? "online" : "offline";
+  }
+
+  /**
+   * MAIN METHODS
+   */
+  getServerStatus() {
+    return this.serverStatus;
+  }
+
+  getColor() {
+    return this.serverStatus == "online" ? "green" : "red";
+  }
 }
