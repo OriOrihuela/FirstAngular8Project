@@ -12,4 +12,15 @@ export class Ingredient {
       this.name = name;
       this.amount = amount;
   }
+
+  /**
+   * GETTERS
+   */
+  getName() {
+    return this.name;
+  }
+
+  getAmount() {
+    return this.amount;
+  }
 }
