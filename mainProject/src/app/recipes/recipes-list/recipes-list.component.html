@@ -1,25 +1,17 @@
 <div class="row">
   <div class="col-md-12">
-    <button type="button" class="btn btn-success" style="margin-top: 20px">New Recipe</button>
+    <button type="button" class="btn btn-success" style="margin-top: 20px">
+      New Recipe
+    </button>
   </div>
 </div>
 <hr />
 <div class="row">
   <div class="col-md-12">
-    <a href="#" class="list-group-item clearfix" *ngFor="let recipe of recipes">
-      <div class="float-left">
-        <h4 class="list-group-item-heading">{{ recipe.getName() }}</h4>
-        <p class="list-group-item-text">{{ recipe.getDescription() }}</p>
-      </div>
-      <span class="float-right">
-        <img
-          class="img-responsive"
-          [src]="recipe.getImagePath()"
-          alt="recipe.getName()"
-          style="max-height: 50px;"
-        />
-      </span>
-    </a>
-    <app-recipes-item></app-recipes-item>
+    <app-recipes-item
+      *ngFor="let recipeElement of recipes"
+      [recipe]="recipeElement"
+      (recipeSelected)="onRecipeSelected(recipeElement)"
+    ></app-recipes-item>
   </div>
 </div>
