@@ -3,12 +3,12 @@ export class Ingredient {
    * PROPERTIES
    */
   name: string = null;
-  amount: number = 0;
+  amount: any = 0;
 
   /**
    * CONSTRUCTOR
    */
-  constructor(name: string, amount: number) {
+  constructor(name: string, amount: any) {
       this.name = name;
       this.amount = amount;
   }

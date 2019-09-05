@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Recipe } from "../recipe.model";
+import { Ingredient } from "src/app/shared/ingredient.model";
+import { ShoppingListService } from 'src/app/shopping-list/services/shopping-list.service';
 
 @Injectable({
   providedIn: "root"
@@ -11,20 +13,22 @@ export class RecipesService {
   private recipeSelected = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe(
-      "A Test Recipe",
-      "This is simply a test",
-      "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/crab-asparagus-pappardelle.jpg"
+      "Lemon Pie",
+      "A great dessert for everyone!",
+      "assets/images/lemonPie.png",
+      [new Ingredient("Lemons", 2), new Ingredient("Flour", 200  + "g")]
     ),
     new Recipe(
-      "Another great Recipe",
-      "This is simply a test",
-      "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/crab-asparagus-pappardelle.jpg"
+      "Chicken Wings",
+      "Tastelicious!",
+      "assets/images/chickenWings.png",
+      [new Ingredient("Chicken Wings", 500 + "g"), new Ingredient("Spices", 5)]
     )
   ];
   /**
    * CONSTRUCTOR
    */
-  constructor() {}
+  constructor(private shoppingListService: ShoppingListService) {}
 
   /**
    * GETTERS
@@ -35,5 +39,9 @@ export class RecipesService {
 
   getRecipeSelected() {
     return this.recipeSelected;
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
   }
 }
