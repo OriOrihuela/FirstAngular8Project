@@ -11,6 +11,7 @@ export class RecipesItemComponent implements OnInit {
    * PROPERTIES
    */
   @Input() recipe: Recipe;
+  @Input() index: number;
 
   /**
    * CONSTRUCTOR
