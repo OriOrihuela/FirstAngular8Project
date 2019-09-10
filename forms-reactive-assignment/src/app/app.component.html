@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="col-md-10">
       <!--
           Create a Form with the following Controls and Validators
           1) Project Name (should not be empty)
@@ -14,6 +14,41 @@
 
           Upon submitting the form, simply print the value to the console
       -->
+      <form [formGroup]="projectForm" (ngSubmit)="onSaveProject()">
+        <div class="form-group">
+          <label for="name">Project name: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            formControlName="projectName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email: </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            formControlName="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="status">Project status</label>
+          <select
+            id="status"
+            class="form-control"
+            formControlName="projectStatus"
+          >
+            <option *ngFor="let status of getProjectStatus()">{{
+              status
+            }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create project</button>
+      </form>
     </div>
   </div>
 </div>
