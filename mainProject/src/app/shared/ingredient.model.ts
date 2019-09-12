@@ -8,7 +8,7 @@ export class Ingredient {
   /**
    * CONSTRUCTOR
    */
-  constructor(name: string, amount: any) {
+  constructor(name: string, amount: number) {
       this.name = name;
       this.amount = amount;
   }

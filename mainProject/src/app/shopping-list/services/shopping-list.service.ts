@@ -12,8 +12,9 @@ export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   private ingredients: Ingredient[] = [
     new Ingredient("Apples", 5),
-    new Ingredient("Tomatoes", 10 + "g")
+    new Ingredient("Tomatoes", 10)
   ];
+  startedEditing = new Subject<number>();
 
   /**
    * CONSTRUCTOR
@@ -24,12 +25,19 @@ export class ShoppingListService {
    * GETTERS
    *
    */
+  getIngredient(index: number) {
+    return this.getIngredients()[index];
+  }
   getIngredients() {
     return this.ingredients.slice();
   }
 
   getIngredientsChanged() {
     return this.ingredientsChanged;
+  }
+
+  getStartedEditing() {
+    return this.startedEditing;
   }
 
   /**
