@@ -25,6 +25,33 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(private shoppingListService: ShoppingListService) {}
 
   /**
+   * GETTERS
+   */
+  getShoppingListForm() {
+    return this.shoppingListForm;
+  }
+
+  getSubscription() {
+    return this.subscription;
+  }
+
+  getEditMode() {
+    return this.editMode;
+  }
+
+  getEditedItemIndex() {
+    return this.editedItemIndex;
+  }
+
+  getEditedItem() {
+    return this.editedItem;
+  }
+
+  getShoppingListService() {
+    return this.shoppingListService;
+  }
+
+  /**
    * BEHAVIOURS
    */
   ngOnInit() {
@@ -45,9 +72,27 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
-    this.shoppingListService.addIngredient(newIngredient);
+    /* CHECKING IF WE ARE IN EDIT MODE OR NOT */
+    this.getEditMode()
+      ? this.shoppingListService.updateIngredient(
+          this.editedItemIndex,
+          newIngredient
+        )
+      : this.shoppingListService.addIngredient(newIngredient);
+    this.editMode = false;
+    form.reset();
+  }
+
+  onClear() {
+    this.getShoppingListForm().reset();
+    this.editMode = false;
+  }
+
+  onDelete() {
+    this.getShoppingListService().deleteIngredient(this.getEditedItemIndex());
+    this.onClear();
   }
 }

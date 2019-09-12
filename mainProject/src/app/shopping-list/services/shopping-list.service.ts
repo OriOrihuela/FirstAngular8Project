@@ -45,11 +45,21 @@ export class ShoppingListService {
    */
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.getIngredients());
+    this.ingredientsChanged.next(this.ingredients);
   }
 
   addIngredients(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients);
+    this.getIngredientsChanged().next(this.ingredients);
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.getIngredientsChanged().next(this.ingredients);
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
     this.getIngredientsChanged().next(this.getIngredients());
   }
 }

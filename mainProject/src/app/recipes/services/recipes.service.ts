@@ -15,13 +15,13 @@ export class RecipesService {
       "Lemon Pie",
       "A great dessert for everyone!",
       "assets/images/lemonPie.png",
-      [new Ingredient("Lemons", 2), new Ingredient("Flour", 200 + "g")]
+      [new Ingredient("Lemons", 2), new Ingredient("Flour", 200)]
     ),
     new Recipe(
       "Chicken Wings",
       "Tastelicious!",
       "assets/images/chickenWings.png",
-      [new Ingredient("Chicken Wings", 500 + "g"), new Ingredient("Spices", 5)]
+      [new Ingredient("Chicken Wings", 500), new Ingredient("Spices", 5)]
     )
   ];
   /**
