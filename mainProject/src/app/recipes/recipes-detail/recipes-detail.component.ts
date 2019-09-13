@@ -25,22 +25,49 @@ export class RecipesDetailComponent implements OnInit {
   ) {}
 
   /**
+   * GETTERS
+   */
+  getRecipesService() {
+    return this.recipeService;
+  }
+
+  getRouter() {
+    return this.router;
+  }
+  getRoute() {
+    return this.route;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getRecipe() {
+    return this.recipe;
+  }
+
+  /**
    * BEHAVIOURS
    */
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
+    this.getRoute().params.subscribe((params: Params) => {
       this.id = +params["id"];
-      this.recipe = this.recipeService.getRecipe(this.id);
+      this.recipe = this.getRecipesService().getRecipe(this.getId());
     });
   }
 
   onAddToShoppingList() {
-    this.recipeService.addIngredientsToShoppingList(
-      this.recipe.getIngredients()
+    this.getRecipesService().addIngredientsToShoppingList(
+      this.getRecipe().getIngredients()
     );
   }
 
   onEditRecipe() {
-    this.router.navigate(["edit"], { relativeTo: this.route });
+    this.getRouter().navigate(["edit"], { relativeTo: this.getRoute()});
+  }
+
+  onDeleteRecipe() {
+    this.getRecipesService().deleteRecipe(this.getId());
+    this.getRouter().navigate(["/recipes"]);
   }
 }

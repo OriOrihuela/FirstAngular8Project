@@ -24,13 +24,35 @@ export class RecipesListComponent implements OnInit {
   ) {}
 
   /**
+   * GETTERS
+   */
+  getRecipes() {
+    return this.recipes;
+  }
+
+  getRecipesService() {
+    return this.recipesServices;
+  }
+
+  getRouter() {
+    return this.router;
+  }
+
+  getRoute() {
+    return this.route;
+  }
+
+  /**
    * BEHAVIOURS
    */
   ngOnInit() {
-    this.recipes = this.recipesServices.getRecipes();
+    this.getRecipesService().getRecipesChanged().subscribe((recipes: Recipe[]) => {
+      this.recipes = recipes;
+    });
+    this.recipes = this.getRecipesService().getRecipes();
   }
 
   onNewRecipe() {
-    this.router.navigate(["new"], { relativeTo: this.route });
+    this.getRouter().navigate(["new"], { relativeTo: this.getRoute() });
   }
 }
