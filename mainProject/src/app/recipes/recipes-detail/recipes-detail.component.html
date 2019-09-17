@@ -1,8 +1,8 @@
 <div class="row" style="margin-top: 21px;">
   <div class="col-md-12">
     <img
-      [src]="recipe.getImagePath()"
-      alt="{{ recipe.getName() }}"
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
       class="img-responsive"
       style="max-height: 300px;"
     />
@@ -10,7 +10,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h1>{{ recipe.getName() }}</h1>
+    <h1>{{ recipe.name }}</h1>
   </div>
 </div>
 <div class="row">
@@ -21,22 +21,22 @@
       </button>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" (click)="onAddToShoppingList()">To Shopping List</a></li>
-        <li><a class="dropdown-item">Edit Recipe</a></li>
-        <li><a class="dropdown-item">Delete Recipe</a></li>
+        <li><a class="dropdown-item" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li><a class="dropdown-item" (click)="onDeleteRecipe()">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    {{ recipe.getDescription() }}
+    {{ recipe.description }}
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of recipe.getIngredients()">
-        {{ingredient.getName()}} - {{ingredient.getAmount()}}
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+        {{ingredient.name}} - {{ingredient.amount}}
       </li>
     </ul>
   </div>

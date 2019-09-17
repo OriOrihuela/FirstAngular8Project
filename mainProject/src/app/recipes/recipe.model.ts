@@ -18,23 +18,4 @@ export class Recipe {
         this.imagePath = imagePath;
         this.ingredients = ingredients;
     }
-
-    /**
-     * GETTERS
-     */
-    getName() {
-        return this.name;
-    }
-
-    getDescription() {
-        return this.description;
-    }
-
-    getImagePath() {
-        return this.imagePath;
-    }
-
-    getIngredients() {
-        return this.ingredients;
-    }
 }

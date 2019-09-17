@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Recipe } from "../recipe.model";
-import { RecipesService } from '../services/recipes.service';
+import { RecipesService } from "../services/recipes.service";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 
 @Component({
   selector: "app-recipes-detail",
@@ -11,19 +12,62 @@ export class RecipesDetailComponent implements OnInit {
   /**
    * PROPERTIES
    */
-  @Input() recipe: Recipe;
+  recipe: Recipe;
+  id: number;
 
   /**
    * CONSTRUCTOR
    */
-  constructor(private recipeService: RecipesService) {}
+  constructor(
+    private recipeService: RecipesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  /**
+   * GETTERS
+   */
+  getRecipesService() {
+    return this.recipeService;
+  }
+
+  getRouter() {
+    return this.router;
+  }
+  getRoute() {
+    return this.route;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getRecipe() {
+    return this.recipe;
+  }
 
   /**
    * BEHAVIOURS
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.getRoute().params.subscribe((params: Params) => {
+      this.id = +params["id"];
+      this.recipe = this.getRecipesService().getRecipe(this.getId());
+    });
+  }
 
   onAddToShoppingList() {
-    this.recipeService.addIngredientsToShoppingList(this.recipe.getIngredients());
+    this.getRecipesService().addIngredientsToShoppingList(
+      this.getRecipe().ingredients
+    );
+  }
+
+  onEditRecipe() {
+    this.getRouter().navigate(["edit"], { relativeTo: this.getRoute()});
+  }
+
+  onDeleteRecipe() {
+    this.getRecipesService().deleteRecipe(this.getId());
+    this.getRouter().navigate(["/recipes"]);
   }
 }

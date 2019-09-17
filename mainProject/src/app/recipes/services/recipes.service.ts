@@ -1,7 +1,8 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Recipe } from "../recipe.model";
 import { Ingredient } from "src/app/shared/ingredient.model";
-import { ShoppingListService } from 'src/app/shopping-list/services/shopping-list.service';
+import { ShoppingListService } from "src/app/shopping-list/services/shopping-list.service";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -10,21 +11,9 @@ export class RecipesService {
   /**
    * PROPERTIES
    */
-  private recipeSelected = new EventEmitter<Recipe>();
-  private recipes: Recipe[] = [
-    new Recipe(
-      "Lemon Pie",
-      "A great dessert for everyone!",
-      "assets/images/lemonPie.png",
-      [new Ingredient("Lemons", 2), new Ingredient("Flour", 200  + "g")]
-    ),
-    new Recipe(
-      "Chicken Wings",
-      "Tastelicious!",
-      "assets/images/chickenWings.png",
-      [new Ingredient("Chicken Wings", 500 + "g"), new Ingredient("Spices", 5)]
-    )
-  ];
+  recipesChanged = new Subject<Recipe[]>();
+  private recipes: Recipe[] = [];
+
   /**
    * CONSTRUCTOR
    */
@@ -37,11 +26,42 @@ export class RecipesService {
     return this.recipes.slice();
   }
 
-  getRecipeSelected() {
-    return this.recipeSelected;
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 
+  getRecipesChanged() {
+    return this.recipesChanged;
+  }
+
+  getShoppingListService() {
+    return this.shoppingListService;
+  }
+
+  /**
+   * BEHAVIOURS
+   */
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
+    this.getShoppingListService().addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.getRecipesChanged().next(this.getRecipes());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.getRecipesChanged().next(this.getRecipes());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.getRecipesChanged().next(this.getRecipes());
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.getRecipesChanged().next(this.getRecipes());
   }
 }
