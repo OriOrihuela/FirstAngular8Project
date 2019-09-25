@@ -14,13 +14,21 @@
   <div class="collapse navbar-collapse" id="collapsibleNavId">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/recipes">Recipes</a>
+        <a class="nav-link" routerLink="/recipes" *ngIf="isAuthenticated"
+          >Recipes</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/auth" *ngIf="!isAuthenticated"
+          >Authenticate</a
+        >
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
       </li>
     </ul>
-    <div class="nav-item dropdown">
+    <a class="nav-link" *ngIf="isAuthenticated" (click)="onLogout()">Logout</a>
+    <div class="nav-item dropdown" *ngIf="isAuthenticated">
       <a
         class="nav-link dropdown-toggle navbar-right"
         id="dropdownId"
