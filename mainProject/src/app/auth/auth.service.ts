@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
-import { throwError, Subject } from "rxjs";
+import { throwError, BehaviorSubject } from "rxjs";
 import { User } from "../shared/user.model";
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   /**
@@ -24,18 +25,29 @@ export class AuthService {
   /**
    * PROPERTIES
    */
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
   /**
    * CONSTRUCTOR
    */
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
+
+  /**
+   * GETTERS
+   */
+  getHttpClient() {
+    return this.httpClient;
+  }
+
+  getRouter() {
+    return this.router;
+  }
 
   /**
    * BEHAVIOURS
    */
   signUp(email: string, password: string) {
-    return this.httpClient
+    return this.getHttpClient()
       .post<AuthResponseData>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA7cXe5AY5NWIZbqV0T50fNGqu5uM06pC0",
         {
@@ -58,7 +70,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.httpClient
+    return this.getHttpClient()
       .post<AuthResponseData>(
         "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyA7cXe5AY5NWIZbqV0T50fNGqu5uM06pC0",
         {
@@ -80,6 +92,11 @@ export class AuthService {
       );
   }
 
+  logout() {
+    this.user.next(null);
+    this.getRouter().navigate(["/auth"]);
+  }
+
   private handleAuthentication(
     email: string,
     userId: string,
@@ -92,7 +109,7 @@ export class AuthService {
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
-    let errorMessage: string;
+    let errorMessage: string = "An unknown error occurred!";
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(errorMessage);
     }
@@ -113,7 +130,6 @@ export class AuthService {
           "The user account has been disabled by an administrator.";
         break;
       default:
-        errorMessage = "An unknown error occurred!";
         break;
     }
     return throwError(errorMessage);

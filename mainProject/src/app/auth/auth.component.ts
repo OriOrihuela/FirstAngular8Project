@@ -48,7 +48,6 @@ export class AuthComponent implements OnInit {
     this.isLoginMode ? authObservable = this.authService.login(email, password) : authObservable = this.authService.signUp(email, password);
     authObservable.subscribe(
       resData => {
-        console.log(resData);
         this.isLoading = false;
         this.router.navigate(["/recipes"]);
       },
