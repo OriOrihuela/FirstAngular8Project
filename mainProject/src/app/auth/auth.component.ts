@@ -17,7 +17,7 @@ import { PlaceholderDirective } from "../shared/placeholder/placeholder.directiv
   templateUrl: "./auth.component.html",
   styleUrls: ["./auth.component.scss"]
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit {
   /**
    * PROPERTIES
    */
@@ -25,9 +25,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   error: string = null;
   form: FormGroup;
-  @ViewChild(PlaceholderDirective, { static: false })
-  alertHost: PlaceholderDirective;
-  private closeSub: Subscription;
+  // @ViewChild(PlaceholderDirective, { static: false })
+  // alertHost: PlaceholderDirective;
+  // private closeSub: Subscription;
 
   /**
    * CONSTRUCTOR
@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver
+    // private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
   /**
@@ -48,11 +48,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    if (this.closeSub) {
-      this.closeSub.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.closeSub) {
+  //     this.closeSub.unsubscribe();
+  //   }
+  // }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -76,7 +76,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       },
       errorMessage => {
         this.error = errorMessage;
-        this.showErrorAlert(errorMessage);
+        // this.showErrorAlert(errorMessage);
         this.isLoading = false;
       }
     );
@@ -87,17 +87,17 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.error = null;
   }
 
-  private showErrorAlert(message: string) {
-    const alertComponent = this.componentFactoryResolver.resolveComponentFactory(
-      AlertComponent
-    );
-    const hostViewContainerRef = this.alertHost.viewContainerRef;
-    hostViewContainerRef.clear();
-    const componentRef = hostViewContainerRef.createComponent(alertComponent);
-    componentRef.instance.message = message;
-    this.closeSub = componentRef.instance.close.subscribe(() => {
-      this.closeSub.unsubscribe();
-      hostViewContainerRef.clear();
-    });
-  }
+  // private showErrorAlert(message: string) {
+  //   const alertComponent = this.componentFactoryResolver.resolveComponentFactory(
+  //     AlertComponent
+  //   );
+  //   const hostViewContainerRef = this.alertHost.viewContainerRef;
+  //   hostViewContainerRef.clear();
+  //   const componentRef = hostViewContainerRef.createComponent(alertComponent);
+  //   componentRef.instance.message = message;
+  //   this.closeSub = componentRef.instance.close.subscribe(() => {
+  //     this.closeSub.unsubscribe();
+  //     hostViewContainerRef.clear();
+  //   });
+  // }
 }
