@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
 import { throwError, BehaviorSubject } from "rxjs";
 import { User } from "../shared/user.model";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 export interface AuthResponseData {
   /**
@@ -106,6 +106,28 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem("userData", JSON.stringify(user));
+  }
+
+  autoLogin() {
+    const userData: {
+      email: string;
+      id: string;
+      token: string;
+      tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem("userData"));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData.token,
+      new Date(userData.tokenExpirationDate)
+    );
+    if (loadedUser.getToken()) {
+      this.user.next(loadedUser);
+    }
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
