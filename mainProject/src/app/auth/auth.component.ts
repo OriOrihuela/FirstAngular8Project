@@ -1,16 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ComponentFactoryResolver,
-  ViewChild,
-  OnDestroy
-} from "@angular/core";
-import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { Router } from "@angular/router";
-import { AlertComponent } from "../shared/alert/alert.component";
-import { PlaceholderDirective } from "../shared/placeholder/placeholder.directive";
 
 @Component({
   selector: "app-auth",
@@ -34,9 +26,9 @@ export class AuthComponent implements OnInit {
    */
   constructor(
     private authService: AuthService,
-    private router: Router,
-    // private componentFactoryResolver: ComponentFactoryResolver
-  ) {}
+    private router: Router
+  ) // private componentFactoryResolver: ComponentFactoryResolver
+  {}
 
   /**
    * BEHAVIOURS
@@ -58,7 +50,7 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmitForm(form: NgForm) {
+  onSubmitForm(form) {
     if (!form.valid) {
       return;
     }
@@ -70,7 +62,7 @@ export class AuthComponent implements OnInit {
       ? (authObservable = this.authService.login(email, password))
       : (authObservable = this.authService.signUp(email, password));
     authObservable.subscribe(
-      resData => {
+      () => {
         this.isLoading = false;
         this.router.navigate(["/recipes"]);
       },
