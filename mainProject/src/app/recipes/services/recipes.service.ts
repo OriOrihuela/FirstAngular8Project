@@ -3,6 +3,8 @@ import { Recipe } from "../recipe.model";
 import { Ingredient } from "src/app/shared/ingredient.model";
 import { ShoppingListService } from "src/app/shopping-list/services/shopping-list.service";
 import { Subject } from "rxjs";
+import { Store } from "@ngrx/store";
+import * as ShoppingListActions from "../../shopping-list/store/shopping-list.actions";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +19,10 @@ export class RecipesService {
   /**
    * CONSTRUCTOR
    */
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+  ) {}
 
   /**
    * GETTERS
@@ -42,7 +47,7 @@ export class RecipesService {
    * BEHAVIOURS
    */
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.getShoppingListService().addIngredients(ingredients);
+    this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
   }
 
   addRecipe(recipe: Recipe) {

@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { StoreModule } from "@ngrx/store";
 
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
@@ -10,6 +11,7 @@ import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { ShoppingEditComponent } from "./shopping-list/shopping-edit/shopping-edit.component";
 import { SharedModule } from "./shared/shared.module";
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SharedModule } from "./shared/shared.module";
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   providers: [
     {
