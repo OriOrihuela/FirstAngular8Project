@@ -19,7 +19,7 @@ import { SharedModule } from "./shared/shared.module";
     ShoppingEditComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
