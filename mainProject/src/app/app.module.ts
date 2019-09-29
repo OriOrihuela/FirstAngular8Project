@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ShoppingEditComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
