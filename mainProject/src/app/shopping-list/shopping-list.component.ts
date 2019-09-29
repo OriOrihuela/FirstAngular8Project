@@ -2,11 +2,39 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "./services/shopping-list.service";
 import { Subscription } from "rxjs";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from "@angular/animations";
 
 @Component({
   selector: "app-shopping-list",
   templateUrl: "./shopping-list.component.html",
-  styleUrls: ["./shopping-list.component.scss"]
+  styleUrls: ["./shopping-list.component.scss"],
+  animations: [
+    trigger("list", [
+      state("in", style({ opacity: 1, transform: "translateX(0)" })),
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateX(-100px)"
+        }),
+        animate(300)
+      ]),
+      transition("* => void", [
+        animate(
+          300,
+          style({
+            opacity: 0,
+            transform: "translateX(100px)"
+          })
+        )
+      ])
+    ])
+  ]
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   /**
@@ -36,7 +64,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onEditItem(index: number){
+  onEditItem(index: number) {
     this.shoppingListService.getStartedEditing().next(index);
   }
 }

@@ -10,6 +10,7 @@ import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { ShoppingEditComponent } from "./shopping-list/shopping-edit/shopping-edit.component";
 import { SharedModule } from "./shared/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from "./shared/shared.module";
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
