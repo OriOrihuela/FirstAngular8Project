@@ -1,23 +1,28 @@
 .row {
-  position: relative;
-  left: 60px;
+  justify-content: center;
   .parameters {
     font-weight: bold;
-  }
-  .inputs {
-    left: 44px;
   }
   .buttons {
     margin-left: 5px;
   }
   #buttons {
     position: relative;
-    left: 164px;
+    right: -133px;
   }
   .form-group {
     text-align: center;
   }
   input {
     text-align: center;
+  }
+}
+@media (max-width: 425px) {
+  #buttons {
+    text-align: center;
+    position: unset !important;
+  }
+  .form-group {
+    padding-left: 15px !important;
   }
 }

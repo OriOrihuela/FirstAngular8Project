@@ -74,18 +74,18 @@
             *ngFor="let ingredientCtrl of getControls(); let i = index"
             [formGroupName]="i"
           >
-            <div class="col-md-8">
-              <input type="text" class="form-control" formControlName="name" />
+            <div class="col-md-8 col-6">
+              <input type="text" class="form-control" formControlName="name" placeholder="Ingredient" />
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-4">
               <input
                 type="number"
                 class="form-control"
-                formControlName="amount"
+                formControlName="amount" placeholder="Amount"
               />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-2" id="deleteIngredient">
               <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
             </div>
           </div>

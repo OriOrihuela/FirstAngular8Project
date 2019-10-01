@@ -2,15 +2,26 @@
   justify-content: center;
   position: relative;
   top: 65px;
-
   .credentials {
     font-weight: bold;
   }
-
+  .form-group {
+    text-align: center;
+  }
+  input {
+    text-align: center;
+  }
   input.ng-invalid.ng-touched {
     border: 1px solid red;
   }
   #spinner {
     text-align: center;
+  }
+  #buttons {
+    text-align: center;
+  }
+  #info-label {
+    margin-left: 5px;
+    font-style: italic;
   }
 }
