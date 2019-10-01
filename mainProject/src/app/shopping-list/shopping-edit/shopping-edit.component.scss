@@ -1,8 +1,23 @@
 .row {
+  position: relative;
+  left: 60px;
   .parameters {
     font-weight: bold;
   }
+  .inputs {
+    left: 44px;
+  }
   .buttons {
     margin-left: 5px;
+  }
+  #buttons {
+    position: relative;
+    left: 164px;
+  }
+  .form-group {
+    text-align: center;
+  }
+  input {
+    text-align: center;
   }
 }

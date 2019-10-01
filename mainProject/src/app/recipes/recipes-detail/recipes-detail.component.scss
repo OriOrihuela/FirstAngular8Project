@@ -1,5 +1,22 @@
 .row {
   margin-top: 10px;
+  position: relative;
+  right: -245px;
+  .cols-to-move {
+    position: relative;
+    right: -81px;
+  }
+  #manage-recipe {
+    right: -64px;
+  }
+  #description {
+    font-style: italic;
+    right: -100px;
+  }
+  #ingredients {
+    right: -22px;
+    text-align: center;
+  }
   a {
     cursor: pointer;
   }

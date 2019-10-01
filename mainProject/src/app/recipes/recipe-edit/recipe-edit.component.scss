@@ -16,6 +16,14 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
 }
 
 label {
-  margin-top: 5px;
+  margin-top: 10px;
   font-weight: bold;
+}
+
+input {
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
 }
