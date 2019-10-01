@@ -1,7 +1,19 @@
-#dropdownId {
-    color: black;
-}
-
-a {
+// NAVBAR
+.bg-light {
+  background-color: black !important;
+  .navbar-brand {
+    color: white;
+  }
+  .nav-link {
+    color: white;
+  }
+  .active {
+    font-weight: bold;
+  }
+  .navbar-toggler {
+    background-color: white;
+  }
+  a {
     cursor: pointer;
+  }
 }

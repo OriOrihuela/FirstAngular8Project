@@ -11,6 +11,11 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 #imagePreview {
-  height: 250px;
+  height: 200px;
   width: 300px;
+}
+
+label {
+  margin-top: 5px;
+  font-weight: bold;
 }

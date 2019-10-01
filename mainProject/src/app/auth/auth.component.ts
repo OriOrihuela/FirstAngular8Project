@@ -17,18 +17,11 @@ export class AuthComponent implements OnInit {
   isLoading: boolean = false;
   error: string = null;
   form: FormGroup;
-  // @ViewChild(PlaceholderDirective, { static: false })
-  // alertHost: PlaceholderDirective;
-  // private closeSub: Subscription;
 
   /**
    * CONSTRUCTOR
    */
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) // private componentFactoryResolver: ComponentFactoryResolver
-  {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   /**
    * BEHAVIOURS
@@ -39,12 +32,6 @@ export class AuthComponent implements OnInit {
       password: new FormControl(null, Validators.required)
     });
   }
-
-  // ngOnDestroy() {
-  //   if (this.closeSub) {
-  //     this.closeSub.unsubscribe();
-  //   }
-  // }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -68,7 +55,6 @@ export class AuthComponent implements OnInit {
       },
       errorMessage => {
         this.error = errorMessage;
-        // this.showErrorAlert(errorMessage);
         this.isLoading = false;
       }
     );
@@ -78,18 +64,4 @@ export class AuthComponent implements OnInit {
   onHandleError() {
     this.error = null;
   }
-
-  // private showErrorAlert(message: string) {
-  //   const alertComponent = this.componentFactoryResolver.resolveComponentFactory(
-  //     AlertComponent
-  //   );
-  //   const hostViewContainerRef = this.alertHost.viewContainerRef;
-  //   hostViewContainerRef.clear();
-  //   const componentRef = hostViewContainerRef.createComponent(alertComponent);
-  //   componentRef.instance.message = message;
-  //   this.closeSub = componentRef.instance.close.subscribe(() => {
-  //     this.closeSub.unsubscribe();
-  //     hostViewContainerRef.clear();
-  //   });
-  // }
 }

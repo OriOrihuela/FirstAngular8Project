@@ -1,9 +1,16 @@
-input.ng-invalid.ng-touched {
-  border: 1px solid red;
-}
-#spinner {
-  text-align: center;
-}
-#mainRow {
-    margin-top: 20px;
+.row {
+  justify-content: center;
+  position: relative;
+  top: 65px;
+
+  .credentials {
+    font-weight: bold;
+  }
+
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  #spinner {
+    text-align: center;
+  }
 }
