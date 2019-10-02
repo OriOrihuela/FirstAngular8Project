@@ -25,3 +25,9 @@
     font-style: italic;
   }
 }
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+  .row {
+    top: 215px;
+  }
+}

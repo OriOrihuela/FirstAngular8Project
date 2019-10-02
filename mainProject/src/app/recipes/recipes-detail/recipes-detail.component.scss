@@ -13,3 +13,10 @@
     }
   }
 }
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+  #content {
+    position: relative;
+    top: 50px;
+  }
+}

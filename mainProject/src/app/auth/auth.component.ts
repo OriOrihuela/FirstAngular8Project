@@ -3,11 +3,13 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { fadeIn } from "../shared/animations/animations";
 
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.scss"]
+  styleUrls: ["./auth.component.scss"],
+  animations: [fadeIn]
 })
 export class AuthComponent implements OnInit {
   /**

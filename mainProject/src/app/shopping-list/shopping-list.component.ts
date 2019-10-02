@@ -9,6 +9,7 @@ import {
   transition,
   animate
 } from "@angular/animations";
+import { fadeIn } from "../shared/animations/animations";
 
 @Component({
   selector: "app-shopping-list",
@@ -33,7 +34,8 @@ import {
           })
         )
       ])
-    ])
+    ]),
+    fadeIn
   ]
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {

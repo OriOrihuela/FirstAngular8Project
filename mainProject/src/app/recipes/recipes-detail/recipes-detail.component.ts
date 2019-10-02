@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Recipe } from "../recipe.model";
 import { RecipesService } from "../services/recipes.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { fadeIn } from "src/app/shared/animations/animations";
 
 @Component({
   selector: "app-recipes-detail",
@@ -63,7 +64,7 @@ export class RecipesDetailComponent implements OnInit {
   }
 
   onEditRecipe() {
-    this.getRouter().navigate(["edit"], { relativeTo: this.getRoute()});
+    this.getRouter().navigate(["edit"], { relativeTo: this.getRoute() });
   }
 
   onDeleteRecipe() {

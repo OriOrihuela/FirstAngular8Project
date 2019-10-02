@@ -10,3 +10,9 @@ h3 {
     margin-bottom: 120px;
   }
 }
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+  h3 {
+    top: 300px;
+  }
+}

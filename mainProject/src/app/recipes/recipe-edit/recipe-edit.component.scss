@@ -28,3 +28,10 @@ input {
 .form-group {
   text-align: center;
 }
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+  .row {
+    position: relative;
+    top: 34px;
+  }
+}

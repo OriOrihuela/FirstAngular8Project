@@ -17,6 +17,7 @@
     text-align: center;
   }
 }
+
 @media (max-width: 425px) {
   #buttons {
     text-align: center;
@@ -24,5 +25,11 @@
   }
   .form-group {
     padding-left: 15px !important;
+  }
+}
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+  #buttons {
+    right: -187px !important;
   }
 }

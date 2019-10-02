@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Recipe } from "../recipe.model";
 import { RecipesService } from "../services/recipes.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
+import { fadeIn } from "src/app/shared/animations/animations";
 
 @Component({
   selector: "app-recipes-list",
@@ -52,9 +53,11 @@ export class RecipesListComponent implements OnInit, OnDestroy {
    * BEHAVIOURS
    */
   ngOnInit() {
-    this.subscription = this.getRecipesService().getRecipesChanged().subscribe((recipes: Recipe[]) => {
-      this.recipes = recipes;
-    });
+    this.subscription = this.getRecipesService()
+      .getRecipesChanged()
+      .subscribe((recipes: Recipe[]) => {
+        this.recipes = recipes;
+      });
     this.recipes = this.getRecipesService().getRecipes();
   }
 
